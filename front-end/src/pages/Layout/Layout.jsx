@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Outlet, NavLink } from 'react-router-dom'
-
+import { AuthContext } from '../../context/AuthContext'
 
 const Layout = () => {
+    const { user, authenticateUser, removeToken } = useContext(AuthContext)
+    function handleClick() {
+        removeToken()
+        authenticateUser()
+    }
+
     return (
         <>
             <header>
                 <nav>
                     <ul>
-                        <p>
-                            Hello
-                        </p>
                         <li>
                             <NavLink to='/'>Home</NavLink>
                         </li>
@@ -20,12 +23,18 @@ const Layout = () => {
                         <li>
                             <NavLink to='/my-profile'>My Profile</NavLink>
                         </li>
-                        <li>
-                            <NavLink to='/login'>Login</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to='/signup'>Signup</NavLink>
-                        </li>
+                        {!user ? (
+                            <>
+                                <li>
+                                    <NavLink to="/login">Login</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/signup">Signup</NavLink>
+                                </li>
+                            </>
+                        ) : (
+                            <button onClick={handleClick}>Logout</button>
+                        )}
                     </ul>
                 </nav>
             </header>

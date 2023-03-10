@@ -38,4 +38,4 @@ const AllArt = (props) => {
     )
 }
 
-export default AllBeers
+export default AllArt
