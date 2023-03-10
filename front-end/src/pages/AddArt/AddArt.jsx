@@ -1,13 +1,13 @@
 import myApi from '../../service/service'
 import React, { useState } from 'react'
 
-const AddArt = () => {
+const AddArt = (user) => {
 
     const [art, setArt] = useState('')
     const [description, setDescription] = useState('')
     const [title, setTitle] = useState('')
-    const [date, setDate] = useState(0)
-    const [artist, setArtist] = useState('')
+    const [date, setDate] = useState('')
+    const [artist, setArtist] = useState(user.username)
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -24,16 +24,19 @@ const AddArt = () => {
         <form onSubmit={handleSubmit}>
             <label htmlFor='art'>Upload your file</label>
             <div>
-                {/* Upload field */}
-                {/* onChange={(event) => setArt(event.target.value)} */}
-
+                <input
+                    type='file'
+                    onChange={(event) => setArt(event.target.files[0])}
+                />
             </div >
             <div>
                 <label htmlFor='title'>Title</label>
                 <div>
-                    {/* Upload field */}
-                    {/* onChange={(event) => setTitle(event.target.value)} */}
-
+                    <input
+                        type='text'
+                        value={title}
+                        onChange={(event) => setTitle(event.target.value)}
+                    />
                 </div >
                 <label htmlFor='description'>Description: </label>
                 <div>
@@ -44,14 +47,19 @@ const AddArt = () => {
                 </div>
                 <label htmlFor='date'>Date</label>
                 <div>
-                    {/* Upload field */}
-                    {/* onChange={(event) => setDate(event.target.value)} */}
-
+                    <input
+                        type='date'
+                        value={date}
+                        onChange={(event) => setDate(event.target.value)}
+                    />
                 </div >
-                <label htmlFor='artist'>Artist name</label>
+                <label htmlFor='artist'>{user.username}</label>
                 <div>
-                    {/* Upload field */}
-                    {/* onChange={(event) => setArtist(event.target.value)} */}
+                    <input
+                        type='text'
+                        value={artist}
+                        readOnly
+                    />
                 </div >
                 <button>Submit art</button>
             </div>
