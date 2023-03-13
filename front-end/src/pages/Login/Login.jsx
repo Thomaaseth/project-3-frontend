@@ -16,10 +16,11 @@ export default function Login() {
         const userToLogin = { username, password }
 
         try {
-            const response = await myApi.post('/auth/login', userToLogin)
+            const response = await myApi.post('/api/auth/login', userToLogin)
             console.log(response)
             storeToken(response.data.token)
             await authenticateUser()
+
         } catch (error) {
             console.error(error.response.data.message)
             setError(error.response.data.message)
@@ -50,8 +51,7 @@ export default function Login() {
                     />
                 </label>
             </div>
-            {/* &copy;This webise is &gt; > now clearly mine */}
-            {error.length > 0 && <p className="error">{error}</p>}
+            {error && error.length > 0 && <p className="error">{error}</p>}
             <button>Login</button>
         </form>
     )

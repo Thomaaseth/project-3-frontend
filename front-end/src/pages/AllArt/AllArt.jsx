@@ -9,7 +9,7 @@ const AllArt = (props) => {
 
     const artPiece = props.artPiece
     useEffect(() => {
-        fetch('/myApi/art')
+        fetch('/myApi/artPiece')
             .then((rawResponse) => rawResponse.json())
             .then((response) => {
                 setAllArt(response)

@@ -4,6 +4,14 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 
 const myApi = axios.create({
     baseURL: BACKEND_URL,
+    // withCredentials: true
+})
+
+myApi.interceptors.request.use(config => {
+    const token = localStorage.getItem("token")
+    config.headers.Authorization = token ? `Bearer ${token}` : ""
+
+    return config;
 })
 
 myApi.createArt = (art) => {

@@ -20,24 +20,19 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route element={<Layout />} />
-
-        <Route path='/' element={<Home />} />
-        <Route path='/AllArt' element={<AllArt />} />
-
-        <Route element={<ProtectedRoute />} >
-
-          <Route path='/AddArt' element={<AddArt />} />
-          <Route path='/Art/:id' element={<Art />} />
-          <Route path='/EditArt/:id' element={<EditArt />} />
+        <Route element={<Layout />} >
+          <Route path='/' element={<Home />} />
+          <Route path='/gallery' element={<AllArt />} />
+          <Route element={<IsLoggedOut />} >
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/login' element={<Login />} />
+          </Route>
+          <Route element={<ProtectedRoute />} >
+            <Route path='/add-art' element={<AddArt />} />
+            <Route path='/art/:id' element={<Art />} />
+            <Route path='/edit-art/:id' element={<EditArt />} />
+          </Route>
         </Route>
-        <Route element={<IsLoggedOut />} >
-
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/login' element={<Login />} />
-        </Route>
-
-
 
         <Route path='*' element={<Error />} />
       </Routes>

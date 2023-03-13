@@ -22,13 +22,10 @@ function AuthContextWrapper(props) {
 
     async function authenticateUser() {
         const currentToken = getToken()
+        console.log(currentToken)
         setToken(currentToken)
         try {
-            const response = await myApi.get('/auth/profile', {
-                headers: {
-                    Authorization: `Bearer ${currentToken}`,
-                },
-            })
+            const response = await myApi.get('/api/auth/profile')
             if (response.status === 200) {
                 setUser(response.data)
                 setIsLoading(false)
@@ -37,7 +34,7 @@ function AuthContextWrapper(props) {
                 setIsLoading(false)
             }
         } catch (error) {
-            console.log(error.response.data)
+            console.log(error)
             setUser(null)
             setIsLoading(false)
         }
@@ -50,7 +47,7 @@ function AuthContextWrapper(props) {
 
     return (
         <AuthContext.Provider
-            value={{ storeToken, user, authenticateUser, removeToken }}
+            value={{ storeToken, isLoading, user, authenticateUser, removeToken }}
         >
             {props.children}
         </AuthContext.Provider>

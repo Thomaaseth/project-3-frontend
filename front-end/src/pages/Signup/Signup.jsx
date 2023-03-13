@@ -18,7 +18,7 @@ export default function Signup() {
             username,
             password,
             isArtist,
-            [event.target.id]: event.target.value,
+            [event.target.id]: event.target.checked,
         }
         setFormData(updatedState)
     }
@@ -27,14 +27,15 @@ export default function Signup() {
         event.preventDefault()
         const userToCreate = { email, username, password, isArtist }
 
+        console.log(userToCreate)
+
         try {
-            const response = await myApi.post('/auth/signup', userToCreate)
+            const response = await myApi.post('/api/auth/signup', userToCreate)
             if (response.status === 201) {
                 navigate('/login')
             }
         } catch (error) {
-            console.error(error.response.data)
-            setError(error.response.data.message)
+            console.error(error)
         }
     }
 
@@ -78,17 +79,17 @@ export default function Signup() {
             </div>
             <div>
                 <label htmlFor="isArtist">
-                    isArtist:&nbsp;
+                    Artist:&nbsp;
                     <input
                         type="checkbox"
                         id="isArtist"
-                        checked={isArtist}
+                        value={isArtist}
                         onChange={handleChange}
                     />
                 </label>
             </div>
             {/* &copy;This webise is &gt; > now clearly mine */}
-            {error.length > 0 && <p className="error">{error}</p>}
+            {error && error.length > 0 && <p className="error">{error}</p>}
             <button>Signup</button>
         </form>
     )
