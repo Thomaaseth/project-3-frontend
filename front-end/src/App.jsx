@@ -13,6 +13,7 @@ import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import ProtectedRoute from './pages/Navigation/ProtectedRoutes'
 import IsLoggedOut from './pages/Navigation/IsLoggedOut'
+import MyProfile from './pages/MyProfile/MyProfile'
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -28,6 +29,7 @@ function App() {
             <Route path='/login' element={<Login />} />
           </Route>
           <Route element={<ProtectedRoute />} >
+            <Route path='/my-profile' element={<MyProfile />} />
             <Route path='/add-art' element={<AddArt />} />
             <Route path='/art/:id' element={<Art />} />
             <Route path='/edit-art/:id' element={<EditArt />} />

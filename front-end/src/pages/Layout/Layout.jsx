@@ -20,9 +20,6 @@ const Layout = () => {
                         <li>
                             <NavLink to='/gallery'>Gallery</NavLink>
                         </li>
-                        <li>
-                            <NavLink to='/my-profile'>My Profile</NavLink>
-                        </li>
                         {!user ? (
                             <>
                                 <li>
@@ -33,7 +30,12 @@ const Layout = () => {
                                 </li>
                             </>
                         ) : (
-                            <button onClick={handleClick}>Logout</button>
+                            <>
+                                <li>
+                                    <NavLink to='/my-profile'>My Profile</NavLink>
+                                </li>
+                                <button onClick={handleClick}>Logout</button>
+                            </>
                         )}
                     </ul>
                 </nav>

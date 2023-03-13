@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import myApi from '../../service/service'
 
 
 
@@ -9,10 +10,14 @@ const AllArt = (props) => {
 
     const artPiece = props.artPiece
     useEffect(() => {
-        fetch('/myApi/artPiece')
-            .then((rawResponse) => rawResponse.json())
-            .then((response) => {
-                setAllArt(response)
+        // fetch('/myApi/artPiece')
+        //     .then((rawResponse) => rawResponse.json())
+        //     .then((response) => {
+        //         setAllArt(response)
+        //     })
+        myApi.get('api/allArt')
+            .then((rawResponse) => {
+                setAllArt(rawResponse)
             })
             .catch((e) => console.error(e))
     }, [])
