@@ -25,7 +25,7 @@ function AuthContextWrapper(props) {
         console.log(currentToken)
         setToken(currentToken)
         try {
-            const response = await myApi.get('/api/auth/profile')
+            const response = await myApi.get('/auth/profile')
             if (response.status === 200) {
                 setUser(response.data)
                 setIsLoading(false)

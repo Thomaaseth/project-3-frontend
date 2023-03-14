@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import myApi from '../../service/service'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import './MyProfile.css'
 
 const MyProfile = () => {
@@ -8,7 +8,7 @@ const MyProfile = () => {
     const [artPieces, setArtPieces] = useState([])
 
     useEffect(() => {
-        myApi.get(`api/auth/profile`)
+        myApi.get(`/auth/profile`)
             .then((rawResponse) => {
                 setUser(rawResponse.data)
             })
@@ -16,14 +16,14 @@ const MyProfile = () => {
     }, [])
 
     useEffect(() => {
-        if (user) {
-            myApi.get(`myApi/artPiece?artist=${user._id}`)
-                .then((rawResponse) => {
-                    setArtPieces(rawResponse.data)
-                })
-                .catch((e) => console.error(e))
+        // if (user) {
+        //     myApi.get(`myApi/artPiece?artist=${user._id}`)
+        //         .then((rawResponse) => {
+        //             setArtPieces(rawResponse.data)
+        //         })
+        //         .catch((e) => console.error(e))
 
-        }
+        // }
     }, [])
 
     if (!user) {

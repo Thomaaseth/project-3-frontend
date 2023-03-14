@@ -1,46 +1,52 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import myApi from '../../service/service'
+import './AllArt.css'
 
 
 
 const AllArt = (props) => {
 
-    const [allArt, setAllArt] = useState(null)
+    const [artPieces, setArtPieces] = useState([])
 
     const artPiece = props.artPiece
     useEffect(() => {
-        // fetch('/myApi/artPiece')
-        //     .then((rawResponse) => rawResponse.json())
-        //     .then((response) => {
-        //         setAllArt(response)
-        //     })
-        myApi.get('api/artPiece/allArt')
-            .then((rawResponse) => rawResponse.json())
+
+        myApi.get('/art')
             .then((response) => {
-                setAllArt(response)
+                setArtPieces(response.data)
             })
-        n.catch((e) => console.error(e))
+            .catch((e) => console.error(e))
     }, [])
 
-    console.log(allArt)
+    console.log(artPiece)
 
-    if (!allArt) {
+    if (!artPieces) {
         return <div className='Loading'>Loading...</div>
     }
 
     return (
         <div>
-            {allArt.map((artPiece) => {
-                return <div className='ListOfArtPieces' key={artPiece._id}>
-                    <li><Link to={`/art/${artPiece._id}`}>{artPiece.title}</Link></li>
-                    <img src={artPiece.art} />
-                    <li>{artPiece.date}</li>
-                    <li>{artPiece.description}</li>
-                    <li>{artPiece.artist}</li>
+            <h3>Gallery</h3>
+            {artPieces.length === 0 ? (
+                <div>Nothing to view</div>
+            ) : (
+                <div className='gallery'>
+                    {artPieces.map((artPiece) => (
+                        <Link key={artPiece._id} className='view-art'>
+                            <div>
+                                <p>Title: {artPiece.title}</p>
+                                <img src={artPiece.image} />
+                                <p>Date: {artPiece.date}</p>
+                                <p>Description: {artPiece.description}</p>
+                            </div>
+                        </Link>
+                    ))}
                 </div>
-            })}
-        </div>
+            )
+            }
+
+        </div >
     )
 }
 

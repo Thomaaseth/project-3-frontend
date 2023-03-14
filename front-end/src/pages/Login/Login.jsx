@@ -16,14 +16,14 @@ export default function Login() {
         const userToLogin = { username, password }
 
         try {
-            const response = await myApi.post('/api/auth/login', userToLogin)
+            const response = await myApi.post('/auth/login', userToLogin)
             console.log(response)
             storeToken(response.data.token)
             await authenticateUser()
 
         } catch (error) {
-            console.error(error.response.data.message)
-            setError(error.response.data.message)
+            console.error(error)
+            setError(error)
         }
     }
 

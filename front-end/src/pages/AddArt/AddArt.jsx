@@ -11,9 +11,17 @@ const AddArt = (user) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const artToCreate = { art, description, title, date, artist }
+        const formData = new FormData()
+
+        formData.append('image', art)
+        formData.append('description', description)
+        formData.append('title', title)
+        formData.append('date', date)
+        formData.append('artist', artist)
+        // const { data } = await axios.post("http://localhost:5005/api/art", formData)
+        // console.log(data)
         try {
-            const response = await myApi.createArt(artToCreate)
+            const response = await myApi.createArt(formData)
             console.log(response)
         } catch (error) {
             console.error(error)
@@ -23,12 +31,11 @@ const AddArt = (user) => {
     return (
         <form onSubmit={handleSubmit}>
             <label htmlFor='art'>Upload your file</label>
-            <div>
-                <input
-                    type='file'
-                    onChange={(event) => setArt(event.target.files[0])}
-                />
-            </div >
+            <input
+                type='file'
+                name='image'
+                onChange={(event) => setArt(event.target.files[0])}
+            />
             <div>
                 <label htmlFor='title'>Title</label>
                 <div>
@@ -61,7 +68,8 @@ const AddArt = (user) => {
                         readOnly
                     />
                 </div >
-                <button>Submit art</button>
+                <button onClick={handleSubmit}>Submit art</button>
+                <button onClick={handleSubmit}>Cancel</button>
             </div>
         </form>
     )

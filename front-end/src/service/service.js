@@ -15,7 +15,7 @@ myApi.interceptors.request.use(config => {
 })
 
 myApi.createArt = (art) => {
-    return myApi.post('/', art)
+    return myApi.post('/art', art)
 }
 
 myApi.getAllArt = (queryString) => {
