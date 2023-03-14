@@ -30,7 +30,7 @@ function App() {
           </Route>
           <Route element={<ProtectedRoute />} >
             <Route path='/my-profile' element={<MyProfile />} />
-            <Route path='/add-art' element={<AddArt />} />
+            <Route path='/add-new-art' element={<AddArt />} />
             <Route path='/art/:id' element={<Art />} />
             <Route path='/edit-art/:id' element={<EditArt />} />
           </Route>

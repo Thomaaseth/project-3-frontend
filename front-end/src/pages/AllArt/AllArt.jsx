@@ -15,11 +15,12 @@ const AllArt = (props) => {
         //     .then((response) => {
         //         setAllArt(response)
         //     })
-        myApi.get('api/allArt')
-            .then((rawResponse) => {
-                setAllArt(rawResponse)
+        myApi.get('api/artPiece/allArt')
+            .then((rawResponse) => rawResponse.json())
+            .then((response) => {
+                setAllArt(response)
             })
-            .catch((e) => console.error(e))
+        n.catch((e) => console.error(e))
     }, [])
 
     console.log(allArt)
