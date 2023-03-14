@@ -1,32 +1,25 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import myApi from '../../service/service'
 import { NavLink, Link } from 'react-router-dom'
 import './MyProfile.css'
+import { AuthContext } from '../../context/AuthContext'
 
 const MyProfile = () => {
-    const [user, setUser] = useState(null)
-    const [artPieces, setArtPieces] = useState([])
+    const { user } = useContext(AuthContext)
+    const [artPieces, setArtPieces] = useState(null)
+
 
     useEffect(() => {
-        myApi.get(`/auth/profile`)
-            .then((rawResponse) => {
-                setUser(rawResponse.data)
+        myApi.get('/art/mine')
+            .then((response) => {
+                setArtPieces(response.data)
             })
             .catch((e) => console.error(e))
+
     }, [])
 
-    useEffect(() => {
-        // if (user) {
-        //     myApi.get(`myApi/artPiece?artist=${user._id}`)
-        //         .then((rawResponse) => {
-        //             setArtPieces(rawResponse.data)
-        //         })
-        //         .catch((e) => console.error(e))
 
-        // }
-    }, [])
-
-    if (!user) {
+    if (!artPieces) {
         return <div className='Loading'>Loading...</div>
     }
 
@@ -40,12 +33,12 @@ const MyProfile = () => {
             {artPieces.length === 0 ? (
                 <div>No art pieces found</div>
             ) : (
-                <div className='my-gallery'>
+                <div className='gallery-containery'>
                     {artPieces.map((artPiece) => (
                         <Link key={artPiece._id} to={`/edit-art/${artPiece._id}`} className='edit-art'>
                             <div>
                                 <p>Title: {artPiece.title}</p>
-                                <img src={artPiece.art} />
+                                <img src={artPiece.image} />
                                 <p>Date: {artPiece.date}</p>
                                 <p>Description: {artPiece.description}</p>
                             </div>

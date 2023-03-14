@@ -1,0 +1,10 @@
+.gallery-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.gallery-container img {
+    max-width: 200px;
+    max-height: 200px;
+}

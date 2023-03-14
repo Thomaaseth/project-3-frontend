@@ -11,7 +11,6 @@ const AllArt = (props) => {
 
     const artPiece = props.artPiece
     useEffect(() => {
-
         myApi.get('/art')
             .then((response) => {
                 setArtPieces(response.data)
@@ -26,12 +25,12 @@ const AllArt = (props) => {
     }
 
     return (
-        <div>
+        <div >
             <h3>Gallery</h3>
             {artPieces.length === 0 ? (
-                <div>Nothing to view</div>
+                <div>Loading...</div>
             ) : (
-                <div className='gallery'>
+                <div className='gallery-container'>
                     {artPieces.map((artPiece) => (
                         <Link key={artPiece._id} className='view-art'>
                             <div>
