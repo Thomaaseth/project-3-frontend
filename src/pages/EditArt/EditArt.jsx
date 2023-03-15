@@ -93,8 +93,8 @@ const EditArt = (user) => {
                     <div>
                         <input
                             type='date'
-                            value={date.split("T")[0]}
-                            onChange={(event) => setDate(event.target.value.split("T")[0])}
+                            value={date}
+                            onChange={(event) => setDate(event.target.value)}
                         />
                     </div >
                     <label htmlFor='artist'>{user.username}</label>

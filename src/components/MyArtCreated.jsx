@@ -1,38 +1,44 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import myApi from '../../service/service'
-import './AllArt.css'
+import myApi from '../service/service'
+// import { AuthContext } from '../../context/AuthContext'
+import MyProfile from '../pages/MyProfile/MyProfile'
+import { NavLink, Link } from 'react-router-dom'
 
 
 
-const AllArt = (props) => {
+const MyArtCreated = (user) => {
 
-    const [artPieces, setArtPieces] = useState([])
+    const [artPieces, setArtPieces] = useState(null)
 
-    const artPiece = props.artPiece
+
     useEffect(() => {
-        myApi.get('/art')
+        myApi.get('/art/mine')
             .then((response) => {
                 setArtPieces(response.data)
             })
             .catch((e) => console.error(e))
-    }, [])
 
-    console.log(artPiece)
+    }, [])
 
     if (!artPieces) {
         return <div className='Loading'>Loading...</div>
     }
 
+
     return (
-        <div >
-            <h3>Gallery</h3>
+        <div>
+            <h2>My Profile</h2>
+            <p>Username: {user.username}</p>
+
+            <NavLink to='/add-new-art' className="btn-addNew">Add new piece</NavLink>
+
+            <h3>My art pieces</h3>
             {artPieces.length === 0 ? (
-                <div>Loading...</div>
+                <div>No art pieces found</div>
             ) : (
                 <div className='gallery-container'>
                     {artPieces.map((artPiece) => (
-                        <Link key={artPiece._id} className='view-art'>
+                        <Link key={artPiece._id} to={`/edit-art/${artPiece._id}`} className='edit-art'>
                             <div>
                                 <p>Title: {artPiece.title}</p>
                                 <img src={artPiece.image} />
@@ -49,4 +55,4 @@ const AllArt = (props) => {
     )
 }
 
-export default AllArt
+export default MyArtCreated
