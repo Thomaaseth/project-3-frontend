@@ -33,7 +33,7 @@ const MyProfile = () => {
             {artPieces.length === 0 ? (
                 <div>No art pieces found</div>
             ) : (
-                <div className='gallery-containery'>
+                <div className='gallery-container'>
                     {artPieces.map((artPiece) => (
                         <Link key={artPiece._id} to={`/edit-art/${artPiece._id}`} className='edit-art'>
                             <div>

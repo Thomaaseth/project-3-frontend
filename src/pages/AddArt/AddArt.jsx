@@ -1,5 +1,6 @@
 import myApi from '../../service/service'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const AddArt = (user) => {
 
@@ -8,10 +9,12 @@ const AddArt = (user) => {
     const [title, setTitle] = useState('')
     const [date, setDate] = useState('')
     const [artist, setArtist] = useState(user.username)
+    const navigate = useNavigate()
 
     const handleSubmit = async (event) => {
         event.preventDefault()
         const formData = new FormData()
+
 
         formData.append('image', art)
         formData.append('description', description)
@@ -26,6 +29,10 @@ const AddArt = (user) => {
         } catch (error) {
             console.error(error)
         }
+    }
+
+    const handleCancel = (event) => {
+        navigate('/my-profile') // navigate to my-profile page on cancel
     }
 
     return (
@@ -69,7 +76,7 @@ const AddArt = (user) => {
                     />
                 </div >
                 <button onClick={handleSubmit}>Submit art</button>
-                <button onClick={handleSubmit}>Cancel</button>
+                <button onClick={handleCancel}>Cancel</button>
             </div>
         </form>
     )

@@ -18,7 +18,7 @@ export default function Signup() {
             username,
             password,
             isArtist,
-            [event.target.id]: event.target.checked,
+            [event.target.id]: event.target.type === "checkbox" ? event.target.checked : event.target.value,
         }
         setFormData(updatedState)
     }

@@ -25,7 +25,7 @@ function AuthContextWrapper(props) {
             const currentToken = getToken()
             console.log(currentToken)
             setToken(currentToken)
-            if (currentToken) {
+            if (!currentToken) {
                 setUser(null)
                 setIsLoading(false)
                 return
