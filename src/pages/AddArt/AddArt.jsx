@@ -14,6 +14,7 @@ const AddArt = (user) => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         const formData = new FormData()
+        navigate('/my-profile')
 
 
         formData.append('image', art)
@@ -34,6 +35,8 @@ const AddArt = (user) => {
     const handleCancel = (event) => {
         navigate('/my-profile') // navigate to my-profile page on cancel
     }
+
+
 
     return (
         <form onSubmit={handleSubmit}>

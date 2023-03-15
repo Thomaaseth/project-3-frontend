@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import myApi from '../service/service'
-// import { AuthContext } from '../../context/AuthContext'
+import { AuthContext } from '../context/AuthContext'
 import MyProfile from '../pages/MyProfile/MyProfile'
 import { NavLink, Link } from 'react-router-dom'
 
 
 
-const MyArtCreated = (user) => {
+const MyArtCreated = () => {
 
     const [artPieces, setArtPieces] = useState(null)
+    const { user } = useContext(AuthContext)
+
 
 
     useEffect(() => {

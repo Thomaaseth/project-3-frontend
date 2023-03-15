@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import myApi from '../service/service'
-// import { AuthContext } from '../../context/AuthContext'
+import { AuthContext } from '../context/AuthContext'
 import { Link } from 'react-router-dom'
 
-const MyFavourites = (user) => {
+const MyFavourites = () => {
     const [favourites, setFavourites] = useState(null)
+    const { user } = useContext(AuthContext)
+
 
     useEffect(() => {
         myApi.get(`/${user._id}`)

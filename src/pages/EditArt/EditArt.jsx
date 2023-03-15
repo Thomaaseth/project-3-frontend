@@ -1,6 +1,9 @@
 import myApi from '../../service/service'
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import './EditArt.css'
+
+
 
 const EditArt = (user) => {
 
@@ -63,8 +66,8 @@ const EditArt = (user) => {
 
 
     return (
-        <div>
-            {/* <img src={image} alt="" /> */}
+        <div className='gallery-container'>
+            <img src={image} alt="" />
             <form onSubmit={handleSubmit}>
                 <label htmlFor='image'>Upload your file</label>
                 <div>
