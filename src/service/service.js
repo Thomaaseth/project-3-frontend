@@ -7,13 +7,14 @@ const myApi = axios.create({
 })
 
 
-
+// Interceptor to ensure that authenticated requests are properly authorized
 myApi.interceptors.request.use(config => {
     const token = localStorage.getItem("token")
     config.headers.Authorization = token ? `Bearer ${token}` : ""
 
     return config;
 })
+
 
 myApi.addFavourite = async (id) => {
     const response = await myApi.post(`/favourites/${id}`)
