@@ -8,6 +8,16 @@ import './AllArt.css'
 const AllArt = (props) => {
 
     const [artPieces, setArtPieces] = useState([])
+    const [successAddedFavourite, setSuccessAddedFavourite] = useState(false)
+
+    const handleAddFavourite = async (artPieceId) => {
+        try {
+            const response = await myApi.addFavourite(artPieceId);
+            setSuccessAddedFavourite(true)
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const artPiece = props.artPiece
     useEffect(() => {
@@ -38,13 +48,19 @@ const AllArt = (props) => {
                                 <img src={artPiece.image} />
                                 <p>Date: {artPiece.date.split("T")[0]}</p>
                                 <p>Description: {artPiece.description}</p>
+                                <button onClick={() => handleAddFavourite(artPiece._id)}>Add to Favourites</button>
+
                             </div>
                         </Link>
                     ))}
                 </div>
+            )}
+            {successAddedFavourite && (
+                <div>
+                    <p>Successfully added as favourite!</p>
+                </div>
             )
             }
-
         </div >
     )
 }

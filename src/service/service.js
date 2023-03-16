@@ -4,8 +4,9 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 
 const myApi = axios.create({
     baseURL: BACKEND_URL,
-    // withCredentials: true
 })
+
+
 
 myApi.interceptors.request.use(config => {
     const token = localStorage.getItem("token")
@@ -14,6 +15,15 @@ myApi.interceptors.request.use(config => {
     return config;
 })
 
+myApi.addFavourite = async (id) => {
+    const response = await myApi.post(`/favourites/${id}`)
+    return response.data
+}
+
+myApi.removeFavourite = async (id) => {
+    const response = await myApi.delete(`/favourites/${id}`)
+    return response.data
+}
 myApi.createArt = (art) => {
     return myApi.post('/art', art)
 }
