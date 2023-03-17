@@ -12,7 +12,7 @@ const MyArtCreated = () => {
     const { user } = useContext(AuthContext)
 
 
-
+    // retrieve all art uploaded by user
     useEffect(() => {
         myApi.get('/art/mine')
             .then((response) => {

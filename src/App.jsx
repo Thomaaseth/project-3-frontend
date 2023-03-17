@@ -16,7 +16,6 @@ import IsLoggedOut from './pages/Navigation/IsLoggedOut'
 import MyProfile from './pages/MyProfile/MyProfile'
 
 function App() {
-  // const [count, setCount] = useState(0)
 
   return (
     <div className="App">

@@ -28,10 +28,6 @@ const ArtCard = (props) => {
             .catch((e) => console.error(e))
     }, [])
 
-
-
-
-
     if (!artPieces) {
         return <div className='Loading'>Loading...</div>
     }

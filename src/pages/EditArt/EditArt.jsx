@@ -64,6 +64,7 @@ const EditArt = (user) => {
         }
     }
 
+    // return the form populated to allow for updating the art
 
     return (
         <div className='gallery-container'>
@@ -100,14 +101,14 @@ const EditArt = (user) => {
                             onChange={(event) => setDate(event.target.value)}
                         />
                     </div >
-                    <label htmlFor='artist'>{user.username}</label>
+                    {/* <label htmlFor='artist'>{user.username}</label>
                     <div>
                         <input
                             type='text'
                             value={artist}
                             readOnly
                         />
-                    </div >
+                    </div > */}
                     <button>Update art</button>
                     <button type="button" onClick={handleCancel}>Cancel</button>
                     <button type="button" onClick={handleDelete}>Delete</button>

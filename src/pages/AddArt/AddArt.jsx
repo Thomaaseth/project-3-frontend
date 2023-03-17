@@ -22,8 +22,7 @@ const AddArt = (user) => {
         formData.append('title', title)
         formData.append('date', date)
         formData.append('artist', artist)
-        // const { data } = await axios.post("http://localhost:5005/api/art", formData)
-        // console.log(data)
+
         try {
             const response = await myApi.createArt(formData)
             console.log(response)
@@ -37,6 +36,7 @@ const AddArt = (user) => {
     }
 
 
+    // return the form submission to add new art pieces
 
     return (
         <form onSubmit={handleSubmit}>
@@ -70,14 +70,14 @@ const AddArt = (user) => {
                         onChange={(event) => setDate(event.target.value)}
                     />
                 </div >
-                <label htmlFor='artist'>{user.username}</label>
+                {/* <label htmlFor='artist'>{user.username}</label>
                 <div>
                     <input
                         type='text'
                         value={artist}
                         readOnly
                     />
-                </div >
+                </div > */}
                 <button onClick={handleSubmit}>Submit art</button>
                 <button onClick={handleCancel}>Cancel</button>
             </div>

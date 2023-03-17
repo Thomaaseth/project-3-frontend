@@ -12,8 +12,11 @@ const MyProfile = () => {
     return (
         <div>
             {user.isArtist ? (
+                // if user is artist, access MyArtCreated component
                 <MyArtCreated />
             ) : (
+
+                // if Artist = false, access MyFavourites component
                 <MyFavourites />
             )}
         </div>

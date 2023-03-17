@@ -49,6 +49,7 @@ function AuthContextWrapper(props) {
         <AuthContext.Provider
             value={{ storeToken, isLoading, user, authenticateUser, removeToken }}
         >
+            {/* any component wrapped by the provider can access the value assign to it and any children components whithin  */}
             {props.children}
         </AuthContext.Provider>
     )
